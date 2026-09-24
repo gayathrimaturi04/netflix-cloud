@@ -37,15 +37,23 @@ pipeline {
                 bat 'docker images'
             }
         }
+
+        stage('Deploy') {
+            steps {
+                bat 'docker stop netflix-cloud || exit /b 0'
+                bat 'docker rm netflix-cloud || exit /b 0'
+                bat 'docker run -d --name netflix-cloud -p 8081:80 netflix-cloud:latest'
+            }
+        }
     }
 
     post {
         success {
-            echo 'Netflix Cloud Docker image built successfully!'
+            echo 'Netflix Cloud CI/CD pipeline completed successfully!'
         }
 
         failure {
-            echo 'Netflix Cloud pipeline failed.'
+            echo 'Netflix Cloud CI/CD pipeline failed.'
         }
     }
 }
