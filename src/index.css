@@ -1,0 +1,363 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #111;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button {
+  font-family: inherit;
+}
+
+.app {
+  min-height: 100vh;
+  background: #111;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+  height: 70px;
+  padding: 0 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #000;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo-button {
+  background: none;
+  border: none;
+  color: #e50914;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.nav-links button:hover {
+  color: #e50914;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  padding: 60px 7%;
+  background:
+    linear-gradient(to right, #000 10%, rgba(0, 0, 0, 0.45)),
+    linear-gradient(to top, #111, transparent);
+}
+
+.hero-content {
+  max-width: 650px;
+}
+
+.hero h2 {
+  font-size: 50px;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 20px;
+  line-height: 1.5;
+  margin-bottom: 30px;
+  color: #ddd;
+}
+
+.watch-button {
+  background: #e50914;
+  color: white;
+  border: none;
+  padding: 14px 25px;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.watch-button:hover {
+  background: #b20710;
+  transform: scale(1.05);
+}
+
+/* =========================
+   MOVIE SECTIONS
+========================= */
+
+.movie-section {
+  padding: 30px 5%;
+  scroll-margin-top: 80px;
+}
+
+.movie-section h2 {
+  margin-bottom: 18px;
+  font-size: 24px;
+}
+
+.movie-row {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  padding: 10px 5px 20px;
+}
+
+.movie-row::-webkit-scrollbar {
+  display: none;
+}
+
+.movie-card {
+  min-width: 180px;
+  width: 180px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.movie-card:hover {
+  transform: scale(1.08);
+}
+
+.movie-card img,
+.no-poster {
+  width: 180px;
+  height: 270px;
+  object-fit: cover;
+  border-radius: 7px;
+  display: block;
+}
+
+.no-poster {
+  background: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.movie-card p {
+  margin-top: 8px;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* =========================
+   STATUS
+========================= */
+
+.status {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.error {
+  color: #ff4d4d;
+}
+
+/* =========================
+   MOVIE DETAILS MODAL
+========================= */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  z-index: 2000;
+}
+
+.movie-modal {
+  position: relative;
+  width: 850px;
+  max-width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #181818;
+  border-radius: 12px;
+  display: flex;
+  gap: 25px;
+  padding: 30px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+}
+
+.modal-poster {
+  width: 280px;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.modal-content {
+  flex: 1;
+  padding-top: 25px;
+}
+
+.modal-content h2 {
+  font-size: 32px;
+  margin-bottom: 15px;
+}
+
+.modal-content p {
+  margin-bottom: 15px;
+  line-height: 1.6;
+  color: #ddd;
+}
+
+.rating {
+  color: #ffd700 !important;
+  font-weight: bold;
+}
+
+.overview {
+  color: #ddd;
+}
+
+.close-button {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: #333;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.close-button:hover {
+  background: #e50914;
+}
+
+.modal-watch-button {
+  margin-top: 10px;
+  padding: 12px 22px;
+  background: #e50914;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.modal-watch-button:hover {
+  background: #b20710;
+}
+
+/* =========================
+   MODAL LOADING
+========================= */
+
+.modal-loading {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3000;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+  .navbar {
+    padding: 0 20px;
+  }
+
+  .logo-button {
+    font-size: 20px;
+  }
+
+  .nav-links {
+    gap: 10px;
+  }
+
+  .nav-links button {
+    font-size: 13px;
+  }
+
+  .hero {
+    min-height: 400px;
+    padding: 40px 25px;
+  }
+
+  .hero h2 {
+    font-size: 36px;
+  }
+
+  .hero p {
+    font-size: 17px;
+  }
+
+  .movie-card {
+    min-width: 140px;
+    width: 140px;
+  }
+
+  .movie-card img,
+  .no-poster {
+    width: 140px;
+    height: 210px;
+  }
+
+  .movie-modal {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .modal-poster {
+    width: 200px;
+    height: 300px;
+  }
+
+  .modal-content {
+    padding-top: 0;
+    text-align: center;
+  }
+
+  .modal-content h2 {
+    font-size: 25px;
+  }
+}
