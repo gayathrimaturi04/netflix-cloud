@@ -1,7 +1,12 @@
 pipeline {
     agent any
 
+    environment {
+        TMDB_API_KEY = credentials('tmdb-api-key')
+    }
+
     stages {
+
         stage('Checkout') {
             steps {
                 checkout scm
@@ -16,7 +21,7 @@ pipeline {
 
         stage('Build React App') {
             steps {
-                bat 'npm run build'
+                bat 'set VITE_TMDB_API_KEY=%TMDB_API_KEY% && npm run build'
             }
         }
 
@@ -30,11 +35,11 @@ pipeline {
 
     post {
         success {
-            echo 'Netflix Cloud React build and Docker test completed successfully!'
+            echo 'Netflix Cloud CI pipeline completed successfully!'
         }
 
         failure {
-            echo 'Netflix Cloud pipeline failed.'
+            echo 'Netflix Cloud CI pipeline failed.'
         }
     }
 }
